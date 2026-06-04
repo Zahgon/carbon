@@ -2,8 +2,6 @@
 package lunar
 
 import (
-	"fmt"
-	"strings"
 	"time"
 
 	"github.com/dromara/carbon/v2/calendar"
@@ -67,444 +65,134 @@ type Lunar struct {
 }
 
 // NewLunar returns a new Lunar instance.
-func NewLunar(year, month, day int, isLeapMonth bool) *Lunar {
-	l := new(Lunar)
-	l.year, l.month, l.day, l.isLeapMonth = year, month, day, isLeapMonth
-	if !l.IsValid() {
-		if !l.IsValid() {
-			l.Error = fmt.Errorf("invalid persian date: %04d-%02d-%02d", year, month, day)
-		}
-	}
-	return l
-}
+func NewLunar(year, month, day int, isLeapMonth bool) *Lunar { _ = "STUB: not implemented"; return nil }
 
 // FromStdTime creates a Lunar instance from standard time.Time.
-func FromStdTime(t time.Time) *Lunar {
-	l := new(Lunar)
-	if t.IsZero() {
-		return nil
-	}
-	daysInYear, daysInMonth, leapMonth := 365, 30, 0
-
-	offset := int(t.Truncate(time.Hour).Sub(time.Date(minYear, 1, 31, 0, 0, 0, 0, t.Location())).Hours() / 24)
-	for l.year = minYear; l.year <= maxYear && offset > 0; l.year++ {
-		daysInYear = getDaysInYear(l.year)
-		offset -= daysInYear
-	}
-	if offset < 0 {
-		offset += daysInYear
-		l.year--
-	}
-	leapMonth = getLeapMonth(l.year)
-	for l.month = 1; l.month <= 12 && offset > 0; l.month++ {
-		if leapMonth > 0 && l.month == (leapMonth+1) && !l.isLeapMonth {
-			l.month--
-			l.isLeapMonth = true
-			daysInMonth = getDaysInLeapMonth(l.year)
-		} else {
-			daysInMonth = getDaysInMonth(l.year, l.month)
-		}
-		offset -= daysInMonth
-		if l.isLeapMonth && l.month == (leapMonth+1) {
-			l.isLeapMonth = false
-		}
-	}
-	if offset == 0 && leapMonth > 0 && l.month == leapMonth+1 {
-		if l.isLeapMonth {
-			l.isLeapMonth = false
-		} else {
-			l.isLeapMonth = true
-			l.month--
-		}
-	}
-	if offset < 0 {
-		offset += daysInMonth
-		l.month--
-	}
-	l.day = offset + 1
-	return l
-}
+func FromStdTime(t time.Time) *Lunar { _ = "STUB: not implemented"; return nil }
 
 // ToGregorian converts Lunar instance to Gregorian instance.
 func (l *Lunar) ToGregorian(timezone ...string) *calendar.Gregorian {
-	g := new(calendar.Gregorian)
-	if !l.IsValid() {
-		return g
-	}
-	loc := time.UTC
-	if len(timezone) > 0 {
-		loc, g.Error = time.LoadLocation(timezone[0])
-	}
-	if g.Error != nil {
-		return g
-	}
-	days := getDaysInMonth(l.year, l.month)
-	offset := getOffsetInYear(l.year, l.month)
-	offset += getOffsetInMonth(l.year)
-
-	// add the time difference of the month before the leap month
-	if l.isLeapMonth {
-		offset += days
-	}
-	// https://github.com/dromara/carbon/issues/219
-	ts := int64(offset+l.day)*86400 - int64(2206512000)
-	g.Time = time.Unix(ts, 0).In(loc)
-	return g
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// add the time difference of the month before the leap month
+
+// https://github.com/dromara/carbon/issues/219
 
 // Animal gets lunar animal name like "猴".
-func (l *Lunar) Animal() string {
-	if !l.IsValid() {
-		return ""
-	}
-	return animals[l.year%12]
-}
+func (l *Lunar) Animal() string { _ = "STUB: not implemented"; return "" }
 
 // Festival gets lunar festival name like "春节".
-func (l *Lunar) Festival() string {
-	if !l.IsValid() {
-		return ""
-	}
-	return festivals[fmt.Sprintf("%d-%d", l.month, l.day)]
-}
+func (l *Lunar) Festival() string { _ = "STUB: not implemented"; return "" }
 
 // Year gets lunar year like 2020.
-func (l *Lunar) Year() int {
-	if !l.IsValid() {
-		return 0
-	}
-	return l.year
-}
+func (l *Lunar) Year() int { _ = "STUB: not implemented"; return 0 }
 
 // Month gets lunar month like 8.
-func (l *Lunar) Month() int {
-	if !l.IsValid() {
-		return 0
-	}
-	return l.month
-}
+func (l *Lunar) Month() int { _ = "STUB: not implemented"; return 0 }
 
 // Day gets lunar day like 5.
-func (l *Lunar) Day() int {
-	if !l.IsValid() {
-		return 0
-	}
-	return l.day
-}
+func (l *Lunar) Day() int { _ = "STUB: not implemented"; return 0 }
 
 // LeapMonth gets lunar leap month like 2.
-func (l *Lunar) LeapMonth() int {
-	if !l.IsValid() {
-		return 0
-	}
-	return getLeapMonth(l.year)
-}
+func (l *Lunar) LeapMonth() int { _ = "STUB: not implemented"; return 0 }
 
 // String implements "Stringer" interface for Lunar.
-func (l *Lunar) String() string {
-	if !l.IsValid() {
-		return ""
-	}
-	return fmt.Sprintf("%04d-%02d-%02d", l.year, l.month, l.day)
-}
+func (l *Lunar) String() string { _ = "STUB: not implemented"; return "" }
 
 // ToYearString outputs a string in lunar year format like "二零二零".
-func (l *Lunar) ToYearString() (year string) {
-	if !l.IsValid() {
-		return ""
-	}
-	year = fmt.Sprintf("%d", l.year)
-	for k, v := range numbers {
-		year = strings.Replace(year, fmt.Sprintf("%d", k), v, -1)
-	}
-	return year
-}
+func (l *Lunar) ToYearString() (year string) { _ = "STUB: not implemented"; return "" }
 
 // ToMonthString outputs a string in lunar month format like "正月".
-func (l *Lunar) ToMonthString() (month string) {
-	if !l.IsValid() {
-		return ""
-	}
-	month = months[l.month-1] + "月"
-	if l.IsLeapMonth() {
-		return "闰" + month
-	}
-	return
-}
+func (l *Lunar) ToMonthString() (month string) { _ = "STUB: not implemented"; return "" }
 
 // ToWeekString outputs a string in week layout like "周一".
-func (l *Lunar) ToWeekString() (month string) {
-	if !l.IsValid() {
-		return ""
-	}
-	return weeks[l.ToGregorian().Time.Weekday()]
-}
+func (l *Lunar) ToWeekString() (month string) { _ = "STUB: not implemented"; return "" }
 
 // ToDayString outputs a string in lunar day format like "廿一".
-func (l *Lunar) ToDayString() (day string) {
-	if !l.IsValid() {
-		return ""
-	}
-	num := numbers[l.day%10]
-	switch {
-	case l.day == 30:
-		day = "三十"
-	case l.day > 20:
-		day = "廿" + num
-	case l.day == 20:
-		day = "二十"
-	case l.day > 10:
-		day = "十" + num
-	case l.day == 10:
-		day = "初十"
-	case l.day < 10:
-		day = "初" + num
-	}
-	return
-}
+func (l *Lunar) ToDayString() (day string) { _ = "STUB: not implemented"; return "" }
 
 // ToDateString outputs a string in lunar date format like "二零二零年腊月初五".
 // 获取农历日期字符串，如 "二零二零年腊月初五"
-func (l *Lunar) ToDateString() string {
-	if !l.IsValid() {
-		return ""
-	}
-	return l.ToYearString() + "年" + l.ToMonthString() + l.ToDayString()
-}
+func (l *Lunar) ToDateString() string { _ = "STUB: not implemented"; return "" }
 
 // IsValid reports whether is a valid lunar date.
-func (l *Lunar) IsValid() bool {
-	if l == nil || l.Error != nil {
-		return false
-	}
-	if l.year >= minYear && l.year <= maxYear {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsValid() bool { _ = "STUB: not implemented"; return false }
 
 // IsLeapYear reports whether is a lunar leap year.
-func (l *Lunar) IsLeapYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	return l.LeapMonth() != 0
-}
+func (l *Lunar) IsLeapYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsLeapMonth reports whether is a lunar leap month.
-func (l *Lunar) IsLeapMonth() bool {
-	if !l.IsValid() {
-		return false
-	}
-	return l.isLeapMonth
-}
+func (l *Lunar) IsLeapMonth() bool { _ = "STUB: not implemented"; return false }
 
 // IsRatYear reports whether is lunar year of Rat.
-func (l *Lunar) IsRatYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 4 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsRatYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsOxYear reports whether is lunar year of Ox.
-func (l *Lunar) IsOxYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 5 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsOxYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsTigerYear reports whether is lunar year of Tiger.
-func (l *Lunar) IsTigerYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 6 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsTigerYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsRabbitYear reports whether is lunar year of Rabbit.
-func (l *Lunar) IsRabbitYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 7 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsRabbitYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsDragonYear reports whether is lunar year of Dragon.
-func (l *Lunar) IsDragonYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 8 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsDragonYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsSnakeYear reports whether is lunar year of Snake.
-func (l *Lunar) IsSnakeYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 9 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsSnakeYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsHorseYear reports whether is lunar year of Horse.
-func (l *Lunar) IsHorseYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 10 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsHorseYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsGoatYear reports whether is lunar year of Goat.
-func (l *Lunar) IsGoatYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 11 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsGoatYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsMonkeyYear reports whether is lunar year of Monkey.
-func (l *Lunar) IsMonkeyYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 0 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsMonkeyYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsRoosterYear reports whether is lunar year of Rooster.
-func (l *Lunar) IsRoosterYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 1 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsRoosterYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsDogYear reports whether is lunar year of Dog.
-func (l *Lunar) IsDogYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 2 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsDogYear() bool { _ = "STUB: not implemented"; return false }
 
 // IsPigYear reports whether is lunar year of Pig.
-func (l *Lunar) IsPigYear() bool {
-	if !l.IsValid() {
-		return false
-	}
-	if l.year%12 == 3 {
-		return true
-	}
-	return false
-}
+func (l *Lunar) IsPigYear() bool { _ = "STUB: not implemented"; return false }
 
 // getOffsetInYear calculates the total number of days from the beginning of the year to the specified month.
 // It handles leap months by adding the leap month days when encountered.
 // Returns the offset in days.
-func getOffsetInYear(year, month int) int {
-	flag := false
-	offset := 0
-	for m := 1; m < month; m++ {
-		leapMonth := getLeapMonth(year)
-		if !flag {
-			if leapMonth <= m && leapMonth > 0 {
-				offset += getDaysInLeapMonth(year)
-				flag = true
-			}
-		}
-		offset += getDaysInMonth(year, m)
-	}
-	return offset
-}
+func getOffsetInYear(year, month int) int { _ = "STUB: not implemented"; return 0 }
 
 // getOffsetInMonth calculates the total number of days from the minimum year (1900) to the specified year.
 // This represents the cumulative days across all years up to but not including the target year.
 // Returns the offset in days.
-func getOffsetInMonth(year int) int {
-	offset := 0
-	for y := minYear; y < year; y++ {
-		offset += getDaysInYear(y)
-	}
-	return offset
-}
+func getOffsetInMonth(year int) int { _ = "STUB: not implemented"; return 0 }
 
 // getDaysInYear calculates the total number of days in a lunar year.
 // It uses the lunar calendar data array to determine which months have 30 days vs 29 days.
 // The base is 348 days (12 months × 29 days), then adds days for months with 30 days.
 // Finally adds the leap month days if the year has a leap month.
 // Returns the total number of days in the year.
-func getDaysInYear(year int) int {
-	var days = 348
-	for i := 0x8000; i > 0x8; i >>= 1 {
-		if (years[year-minYear] & i) != 0 {
-			days++
-		}
-	}
-	return days + getDaysInLeapMonth(year)
-}
+func getDaysInYear(year int) int { _ = "STUB: not implemented"; return 0 }
 
 // getDaysInMonth calculates the number of days in a specific lunar month.
 // It uses the lunar calendar data array to determine if the month has 30 or 29 days.
 // The bit pattern in the data array indicates which months are long (30 days).
 // Returns 30 for long months, 29 for short months.
-func getDaysInMonth(year, month int) int {
-	if (years[year-minYear] & (0x10000 >> uint(month))) != 0 {
-		return 30
-	}
-	return 29
-}
+func getDaysInMonth(year, month int) int { _ = "STUB: not implemented"; return 0 }
 
 // getDaysInLeapMonth calculates the number of days in the leap month of a lunar year.
 // If the year has no leap month, returns 0.
 // If the year has a leap month, determines if it's a long (30 days) or short (29 days) month.
 // Returns the number of days in the leap month, or 0 if no leap month exists.
-func getDaysInLeapMonth(year int) int {
-	if getLeapMonth(year) == 0 {
-		return 0
-	}
-	if years[year-minYear]&0x10000 != 0 {
-		return 30
-	}
-	return 29
-}
+func getDaysInLeapMonth(year int) int { _ = "STUB: not implemented"; return 0 }
 
 // getLeapMonth determines which month is the leap month in a lunar year.
 // Returns 0 if the year has no leap month, or the month number (1-12) if a leap month exists.
 // The leap month information is stored in the lower 4 bits of the lunar calendar data.
 // Returns 0 for years outside the supported range (1900-2100).
-func getLeapMonth(year int) int {
-	return years[year-minYear] & 0xf
-}
+func getLeapMonth(year int) int { _ = "STUB: not implemented"; return 0 }

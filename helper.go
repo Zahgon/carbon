@@ -1,9 +1,7 @@
 package carbon
 
 import (
-	"fmt"
 	"sync"
-	"time"
 )
 
 // format map
@@ -90,105 +88,51 @@ var layoutCache sync.Map
 
 // converts format to layout.
 func format2layout(format string) string {
+	_ = "STUB: not implemented"
 	// Check cache first
-	if cached, exists := layoutCache.Load(format); exists {
-		return cached.(string)
-	}
-
-	// Pre-allocate buffer with estimated capacity to reduce allocations
-	estimatedSize := len(format) * 2
-	buffer := make([]byte, 0, estimatedSize)
-
-	for i := 0; i < len(format); i++ {
-		if layout, ok := formatMap[format[i]]; ok {
-			buffer = append(buffer, layout...)
-		} else {
-			switch format[i] {
-			case '\\': // raw output, no parse
-				// Ensure we don't go out of bounds
-				if i+1 < len(format) {
-					buffer = append(buffer, format[i+1])
-					i++
-				}
-				continue
-			default:
-				buffer = append(buffer, format[i])
-			}
-		}
-	}
-
-	result := string(buffer)
-
-	// Cache the result for common formats to improve performance
-	// Only cache reasonably short formats to avoid memory bloat
-	if len(format) <= 50 {
-		layoutCache.Store(format, result)
-	}
-
-	return result
+	return ""
 }
+
+// Pre-allocate buffer with estimated capacity to reduce allocations
+
+// raw output, no parse
+// Ensure we don't go out of bounds
+
+// Cache the result for common formats to improve performance
+// Only cache reasonably short formats to avoid memory bloat
 
 // timezoneCache caches parsed timezone locations to avoid repeated parsing
 var timezoneCache sync.Map
 
 // parses timezone strings as a time.Location instance.
 func parseTimezone(timezone ...string) (loc *Location, err error) {
-	var tz string
-	if len(timezone) > 0 {
-		tz = timezone[0]
-	} else {
-		tz = DefaultTimezone
-	}
-	if tz == "" {
-		return nil, ErrEmptyTimezone()
-	}
-
-	// Check cache first
-	if cached, exists := timezoneCache.Load(tz); exists {
-		return cached.(*Location), nil
-	}
-
-	if loc, err = time.LoadLocation(tz); err != nil {
-		err = fmt.Errorf("%w: %w", ErrInvalidTimezone(tz), err)
-		return
-	}
-
-	// Cache the successful result
-	timezoneCache.Store(tz, loc)
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
+// Check cache first
+
+// Cache the successful result
 
 // durationCache caches parsed durations to avoid repeated parsing
 var durationCache sync.Map
 
 // parses a duration string as a time.Duration instance.
 func parseDuration(duration string) (dur Duration, err error) {
-	if duration == "" {
-		return 0, ErrEmptyDuration()
-	}
-
-	// Check cache first for common durations
-	if cached, exists := durationCache.Load(duration); exists {
-		return cached.(Duration), nil
-	}
-
-	if dur, err = time.ParseDuration(duration); err != nil {
-		err = fmt.Errorf("%w: %w", ErrInvalidDuration(duration), err)
-		return
-	}
-
-	// Cache the successful result for common durations
-	// Only cache reasonably short durations to avoid memory bloat
-	if len(duration) <= 20 {
-		durationCache.Store(duration, dur)
-	}
-	return
+	_ = "STUB: not implemented"
+	return *new(Duration), nil
 }
+
+// Check cache first for common durations
+
+// Cache the successful result for common durations
+// Only cache reasonably short durations to avoid memory bloat
 
 // gets absolute value.
 func getAbsValue(value int64) int64 {
+	_ = "STUB: not implemented"
 	// Use bit manipulation for better performance
 	// For positive numbers: value ^ 0 - 0 = value
 	// For negative numbers: value ^ -1 - (-1) = ^value + 1 = -value
-	return (value ^ (value >> 63)) - (value >> 63)
+	return 0
 }

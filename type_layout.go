@@ -1,7 +1,6 @@
 package carbon
 
 import (
-	"bytes"
 	"database/sql/driver"
 )
 
@@ -11,80 +10,25 @@ type LayoutType[T LayoutTyper] struct {
 }
 
 // NewLayoutType returns a new LayoutType generic instance.
-func NewLayoutType[T LayoutTyper](c *Carbon) *LayoutType[T] {
-	return &LayoutType[T]{
-		Carbon: c,
-	}
-}
+func NewLayoutType[T LayoutTyper](c *Carbon) *LayoutType[T] { _ = "STUB: not implemented"; return nil }
 
 // Scan implements "driver.Scanner" interface for LayoutType generic struct.
-func (t *LayoutType[T]) Scan(src any) error {
-	var c *Carbon
-	switch v := src.(type) {
-	case nil:
-		return nil
-	case []byte:
-		c = Parse(string(v))
-	case string:
-		c = Parse(v)
-	case StdTime:
-		c = CreateFromStdTime(v)
-	case *StdTime:
-		c = CreateFromStdTime(*v)
-	default:
-		return ErrFailedScan(v)
-	}
-	*t = *NewLayoutType[T](c)
-	return t.Error
-}
+func (t *LayoutType[T]) Scan(src any) error { _ = "STUB: not implemented"; return nil }
 
 // Value implements "driver.Valuer" interface for LayoutType generic struct.
 func (t LayoutType[T]) Value() (driver.Value, error) {
-	if t.IsNil() || t.IsZero() || t.IsEmpty() {
-		return nil, nil
-	}
-	if t.HasError() {
-		return nil, t.Error
-	}
-	return t.StdTime(), nil
+	_ = "STUB: not implemented"
+	return *new(driver.Value), nil
 }
 
 // MarshalJSON implements "json.Marshaler" interface for LayoutType generic struct.
-func (t LayoutType[T]) MarshalJSON() ([]byte, error) {
-	if t.IsNil() || t.IsZero() || t.IsEmpty() {
-		return []byte(`null`), nil
-	}
-	if t.HasError() {
-		return []byte(`null`), t.Error
-	}
-	v := t.Layout(t.getLayout())
-	b := make([]byte, 0, len(v)+2)
-	b = append(b, '"')
-	b = append(b, v...)
-	b = append(b, '"')
-	return b, nil
-}
+func (t LayoutType[T]) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // UnmarshalJSON implements "json.Unmarshaler" interface for LayoutType generic struct.
-func (t *LayoutType[T]) UnmarshalJSON(src []byte) error {
-	v := string(bytes.Trim(src, `"`))
-	if v == "" || v == "null" {
-		return nil
-	}
-	*t = *NewLayoutType[T](ParseByLayout(v, t.getLayout()))
-	return t.Error
-}
+func (t *LayoutType[T]) UnmarshalJSON(src []byte) error { _ = "STUB: not implemented"; return nil }
 
 // String implements "Stringer" interface for LayoutType generic struct.
-func (t *LayoutType[T]) String() string {
-	if t == nil || t.IsInvalid() {
-		return ""
-	}
-	return t.Layout(t.getLayout())
-}
+func (t *LayoutType[T]) String() string { _ = "STUB: not implemented"; return "" }
 
 // getLayout returns the layout of LayoutType generic struct.
-func (t *LayoutType[T]) getLayout() string {
-	var typer T
-	return typer.Layout()
-}
+func (t *LayoutType[T]) getLayout() string { _ = "STUB: not implemented"; return "" }

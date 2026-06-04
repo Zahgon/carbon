@@ -44,118 +44,66 @@ type (
 	TimeNano  = LayoutType[timeNanoType]
 )
 
-func NewTimestamp(c *Carbon) *Timestamp {
-	return NewTimestampType[timestampType](c)
-}
-func NewTimestampMilli(c *Carbon) *TimestampMilli {
-	return NewTimestampType[timestampMilliType](c)
-}
-func NewTimestampMicro(c *Carbon) *TimestampMicro {
-	return NewTimestampType[timestampMicroType](c)
-}
-func NewTimestampNano(c *Carbon) *TimestampNano {
-	return NewTimestampType[timestampNanoType](c)
-}
+func NewTimestamp(c *Carbon) *Timestamp { _ = "STUB: not implemented"; return nil }
 
-func NewDateTime(c *Carbon) *DateTime {
-	return NewLayoutType[datetimeType](c)
-}
-func NewDateTimeMilli(c *Carbon) *DateTimeMilli {
-	return NewLayoutType[datetimeMilliType](c)
-}
-func NewDateTimeMicro(c *Carbon) *DateTimeMicro {
-	return NewLayoutType[datetimeMicroType](c)
-}
-func NewDateTimeNano(c *Carbon) *DateTimeNano {
-	return NewLayoutType[datetimeNanoType](c)
-}
+func NewTimestampMilli(c *Carbon) *TimestampMilli { _ = "STUB: not implemented"; return nil }
 
-func NewDate(c *Carbon) *Date {
-	return NewLayoutType[dateType](c)
-}
-func NewDateMilli(c *Carbon) *DateMilli {
-	return NewLayoutType[dateMilliType](c)
-}
-func NewDateMicro(c *Carbon) *DateMicro {
-	return NewLayoutType[dateMicroType](c)
-}
-func NewDateNano(c *Carbon) *DateNano {
-	return NewLayoutType[dateNanoType](c)
-}
+func NewTimestampMicro(c *Carbon) *TimestampMicro { _ = "STUB: not implemented"; return nil }
 
-func NewTime(c *Carbon) *Time {
-	return NewLayoutType[timeType](c)
-}
-func NewTimeMilli(c *Carbon) *TimeMilli {
-	return NewLayoutType[timeMilliType](c)
-}
-func NewTimeMicro(c *Carbon) *TimeMicro {
-	return NewLayoutType[timeMicroType](c)
-}
-func NewTimeNano(c *Carbon) *TimeNano {
-	return NewLayoutType[timeNanoType](c)
-}
+func NewTimestampNano(c *Carbon) *TimestampNano { _ = "STUB: not implemented"; return nil }
 
-func (t timestampType) Precision() string {
-	return PrecisionSecond
-}
+func NewDateTime(c *Carbon) *DateTime { _ = "STUB: not implemented"; return nil }
 
-func (t timestampMilliType) Precision() string {
-	return PrecisionMillisecond
-}
+func NewDateTimeMilli(c *Carbon) *DateTimeMilli { _ = "STUB: not implemented"; return nil }
 
-func (t timestampMicroType) Precision() string {
-	return PrecisionMicrosecond
-}
+func NewDateTimeMicro(c *Carbon) *DateTimeMicro { _ = "STUB: not implemented"; return nil }
 
-func (t timestampNanoType) Precision() string {
-	return PrecisionNanosecond
-}
+func NewDateTimeNano(c *Carbon) *DateTimeNano { _ = "STUB: not implemented"; return nil }
 
-func (t datetimeType) Layout() string {
-	return DateTimeLayout
-}
+func NewDate(c *Carbon) *Date { _ = "STUB: not implemented"; return nil }
 
-func (t datetimeMilliType) Layout() string {
-	return DateTimeMilliLayout
-}
+func NewDateMilli(c *Carbon) *DateMilli { _ = "STUB: not implemented"; return nil }
 
-func (t datetimeMicroType) Layout() string {
-	return DateTimeMicroLayout
-}
+func NewDateMicro(c *Carbon) *DateMicro { _ = "STUB: not implemented"; return nil }
 
-func (t datetimeNanoType) Layout() string {
-	return DateTimeNanoLayout
-}
+func NewDateNano(c *Carbon) *DateNano { _ = "STUB: not implemented"; return nil }
 
-func (t dateType) Layout() string {
-	return DateLayout
-}
+func NewTime(c *Carbon) *Time { _ = "STUB: not implemented"; return nil }
 
-func (t dateMilliType) Layout() string {
-	return DateMilliLayout
-}
+func NewTimeMilli(c *Carbon) *TimeMilli { _ = "STUB: not implemented"; return nil }
 
-func (t dateMicroType) Layout() string {
-	return DateMicroLayout
-}
+func NewTimeMicro(c *Carbon) *TimeMicro { _ = "STUB: not implemented"; return nil }
 
-func (t dateNanoType) Layout() string {
-	return DateNanoLayout
-}
+func NewTimeNano(c *Carbon) *TimeNano { _ = "STUB: not implemented"; return nil }
 
-func (t timeType) Layout() string {
-	return TimeLayout
-}
+func (t timestampType) Precision() string { _ = "STUB: not implemented"; return "" }
 
-func (t timeMilliType) Layout() string {
-	return TimeMilliLayout
-}
+func (t timestampMilliType) Precision() string { _ = "STUB: not implemented"; return "" }
 
-func (t timeMicroType) Layout() string {
-	return TimeMicroLayout
-}
+func (t timestampMicroType) Precision() string { _ = "STUB: not implemented"; return "" }
 
-func (t timeNanoType) Layout() string {
-	return TimeNanoLayout
-}
+func (t timestampNanoType) Precision() string { _ = "STUB: not implemented"; return "" }
+
+func (t datetimeType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t datetimeMilliType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t datetimeMicroType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t datetimeNanoType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t dateType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t dateMilliType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t dateMicroType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t dateNanoType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t timeType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t timeMilliType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t timeMicroType) Layout() string { _ = "STUB: not implemented"; return "" }
+
+func (t timeNanoType) Layout() string { _ = "STUB: not implemented"; return "" }

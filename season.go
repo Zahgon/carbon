@@ -1,9 +1,5 @@
 package carbon
 
-import (
-	"strings"
-)
-
 var seasons = map[int]int{
 	// month: index
 	1:  3, // winter
@@ -21,87 +17,22 @@ var seasons = map[int]int{
 }
 
 // Season gets season name according to the meteorological division method like "Spring", i18n is supported.
-func (c *Carbon) Season() string {
-	if c.IsInvalid() {
-		return ""
-	}
-
-	lang := c.lang
-	if lang == nil {
-		return ""
-	}
-
-	lang.rw.RLock()
-	defer lang.rw.RUnlock()
-
-	if resources, ok := lang.resources["seasons"]; ok {
-		slice := strings.Split(resources, "|")
-		if len(slice) == QuartersPerYear {
-			return slice[seasons[c.Month()]]
-		}
-	}
-	return ""
-}
+func (c *Carbon) Season() string { _ = "STUB: not implemented"; return "" }
 
 // StartOfSeason returns a Carbon instance for start of the season.
-func (c *Carbon) StartOfSeason() *Carbon {
-	if c.IsInvalid() {
-		return c
-	}
-	year, month, _ := c.Date()
-	if month == 1 || month == 2 {
-		return c.create(year-1, MaxMonth, MinDay, MinHour, MinMinute, MinSecond, MinNanosecond)
-	}
-	return c.create(year, month/3*3, MinDay, MinHour, MinMinute, MinSecond, MinNanosecond)
-}
+func (c *Carbon) StartOfSeason() *Carbon { _ = "STUB: not implemented"; return nil }
 
 // EndOfSeason returns a Carbon instance for end of the season.
-func (c *Carbon) EndOfSeason() *Carbon {
-	if c.IsInvalid() {
-		return c
-	}
-	year, month, _ := c.Date()
-	if month == 1 || month == 2 {
-		return c.create(year, 3, 0, MaxHour, MaxMinute, MaxSecond, MaxNanosecond)
-	}
-	if month == 12 {
-		return c.create(year+1, 3, 0, MaxHour, MaxMinute, MaxSecond, MaxNanosecond)
-	}
-	return c.create(year, month/3*3+3, 0, MaxHour, MaxMinute, MaxSecond, MaxNanosecond)
-}
+func (c *Carbon) EndOfSeason() *Carbon { _ = "STUB: not implemented"; return nil }
 
 // IsSpring reports whether is spring.
-func (c *Carbon) IsSpring() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	month := c.Month()
-	return month == 3 || month == 4 || month == 5
-}
+func (c *Carbon) IsSpring() bool { _ = "STUB: not implemented"; return false }
 
 // IsSummer reports whether is summer.
-func (c *Carbon) IsSummer() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	month := c.Month()
-	return month == 6 || month == 7 || month == 8
-}
+func (c *Carbon) IsSummer() bool { _ = "STUB: not implemented"; return false }
 
 // IsAutumn reports whether is autumn.
-func (c *Carbon) IsAutumn() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	month := c.Month()
-	return month == 9 || month == 10 || month == 11
-}
+func (c *Carbon) IsAutumn() bool { _ = "STUB: not implemented"; return false }
 
 // IsWinter reports whether is winter.
-func (c *Carbon) IsWinter() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	month := c.Month()
-	return month == 1 || month == 2 || month == 12
-}
+func (c *Carbon) IsWinter() bool { _ = "STUB: not implemented"; return false }

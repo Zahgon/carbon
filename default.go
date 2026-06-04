@@ -28,31 +28,7 @@ type Default struct {
 }
 
 // SetDefault sets default.
-func SetDefault(d Default) {
-	if d.Layout != "" {
-		DefaultLayout = d.Layout
-	}
-	if d.Timezone != "" {
-		DefaultTimezone = d.Timezone
-	}
-	if d.Locale != "" {
-		DefaultLocale = d.Locale
-	}
-	if d.WeekStartsAt.String() != "" {
-		DefaultWeekStartsAt = d.WeekStartsAt
-	}
-	if len(d.WeekendDays) > 0 {
-		DefaultWeekendDays = d.WeekendDays
-	}
-}
+func SetDefault(d Default) { _ = "STUB: not implemented"; return }
 
 // ResetDefault resets default.
-func ResetDefault() {
-	DefaultLayout = DateTimeLayout
-	DefaultTimezone = UTC
-	DefaultLocale = "en"
-	DefaultWeekStartsAt = Monday
-	DefaultWeekendDays = []Weekday{
-		Saturday, Sunday,
-	}
-}
+func ResetDefault() { _ = "STUB: not implemented"; return }

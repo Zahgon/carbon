@@ -1,9 +1,5 @@
 package carbon
 
-import (
-	"strings"
-)
-
 var constellations = []struct {
 	startMonth, startDay int
 	endMonth, endDay     int
@@ -23,216 +19,40 @@ var constellations = []struct {
 }
 
 // Constellation gets constellation name like "Aries", i18n is supported.
-func (c *Carbon) Constellation() string {
-	if c.IsInvalid() {
-		return ""
-	}
-
-	lang := c.lang
-	if lang == nil {
-		return ""
-	}
-
-	index := -1
-	_, month, day := c.Date()
-	for i := 0; i < len(constellations); i++ {
-		constellation := constellations[i]
-		if month == constellation.startMonth && day >= constellation.startDay {
-			index = i
-		}
-		if month == constellation.endMonth && day <= constellation.endDay {
-			index = i
-		}
-	}
-
-	lang.rw.RLock()
-	defer lang.rw.RUnlock()
-
-	if resources, ok := lang.resources["constellations"]; ok {
-		slice := strings.Split(resources, "|")
-		if len(slice) == MonthsPerYear {
-			return slice[index]
-		}
-	}
-	return ""
-}
+func (c *Carbon) Constellation() string { _ = "STUB: not implemented"; return "" }
 
 // IsAries reports whether is Aries.
-func (c *Carbon) IsAries() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 3 && day >= 21 {
-		return true
-	}
-	if month == 4 && day <= 19 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsAries() bool { _ = "STUB: not implemented"; return false }
 
 // IsTaurus reports whether is Taurus.
-func (c *Carbon) IsTaurus() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 4 && day >= 20 {
-		return true
-	}
-	if month == 5 && day <= 20 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsTaurus() bool { _ = "STUB: not implemented"; return false }
 
 // IsGemini reports whether is Gemini.
-func (c *Carbon) IsGemini() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 5 && day >= 21 {
-		return true
-	}
-	if month == 6 && day <= 21 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsGemini() bool { _ = "STUB: not implemented"; return false }
 
 // IsCancer reports whether is Cancer.
-func (c *Carbon) IsCancer() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 6 && day >= 22 {
-		return true
-	}
-	if month == 7 && day <= 22 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsCancer() bool { _ = "STUB: not implemented"; return false }
 
 // IsLeo reports whether is Leo.
-func (c *Carbon) IsLeo() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 7 && day >= 23 {
-		return true
-	}
-	if month == 8 && day <= 22 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsLeo() bool { _ = "STUB: not implemented"; return false }
 
 // IsVirgo reports whether is Virgo.
-func (c *Carbon) IsVirgo() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 8 && day >= 23 {
-		return true
-	}
-	if month == 9 && day <= 22 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsVirgo() bool { _ = "STUB: not implemented"; return false }
 
 // IsLibra reports whether is Libra.
-func (c *Carbon) IsLibra() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 9 && day >= 23 {
-		return true
-	}
-	if month == 10 && day <= 23 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsLibra() bool { _ = "STUB: not implemented"; return false }
 
 // IsScorpio reports whether is Scorpio.
-func (c *Carbon) IsScorpio() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 10 && day >= 24 {
-		return true
-	}
-	if month == 11 && day <= 22 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsScorpio() bool { _ = "STUB: not implemented"; return false }
 
 // IsSagittarius reports whether is Sagittarius.
-func (c *Carbon) IsSagittarius() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 11 && day >= 22 {
-		return true
-	}
-	if month == 12 && day <= 21 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsSagittarius() bool { _ = "STUB: not implemented"; return false }
 
 // IsCapricorn reports whether is Capricorn.
-func (c *Carbon) IsCapricorn() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 12 && day >= 22 {
-		return true
-	}
-	if month == 1 && day <= 19 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsCapricorn() bool { _ = "STUB: not implemented"; return false }
 
 // IsAquarius reports whether is Aquarius.
-func (c *Carbon) IsAquarius() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 1 && day >= 20 {
-		return true
-	}
-	if month == 2 && day <= 18 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsAquarius() bool { _ = "STUB: not implemented"; return false }
 
 // IsPisces reports whether is Pisces.
-func (c *Carbon) IsPisces() bool {
-	if c.IsInvalid() {
-		return false
-	}
-	_, month, day := c.Date()
-	if month == 2 && day >= 19 {
-		return true
-	}
-	if month == 3 && day <= 20 {
-		return true
-	}
-	return false
-}
+func (c *Carbon) IsPisces() bool { _ = "STUB: not implemented"; return false }

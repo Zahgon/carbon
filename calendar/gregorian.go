@@ -12,23 +12,6 @@ type Gregorian struct {
 }
 
 // String implements "Stringer" interface.
-func (g *Gregorian) String() string {
-	if g == nil {
-		return ""
-	}
-	if g.Time.IsZero() {
-		return ""
-	}
-	return g.Time.String()
-}
+func (g *Gregorian) String() string { _ = "STUB: not implemented"; return "" }
 
-func (g *Gregorian) IsLeapYear() bool {
-	if g == nil || g.Error != nil {
-		return false
-	}
-	year := g.Time.Year()
-	if year%400 == 0 || (year%4 == 0 && year%100 != 0) {
-		return true
-	}
-	return false
-}
+func (g *Gregorian) IsLeapYear() bool { _ = "STUB: not implemented"; return false }

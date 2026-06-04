@@ -6,15 +6,11 @@ import (
 
 type RFC3339Layout string
 
-func (t RFC3339Layout) Layout() string {
-	return carbon.RFC3339Layout
-}
+func (t RFC3339Layout) Layout() string { _ = "STUB: not implemented"; return "" }
 
 type ISO8601Format string
 
-func (t ISO8601Format) Format() string {
-	return carbon.ISO8601Format
-}
+func (t ISO8601Format) Format() string { _ = "STUB: not implemented"; return "" }
 
 type MySQLModel1 struct {
 	Id uint64 `json:"-" xorm:"pk autoincr"`
@@ -51,9 +47,7 @@ type MySQLModel1 struct {
 	DeletedAt carbon.DateTime `xorm:"deleted deleted_at" json:"-"`
 }
 
-func (MySQLModel1) TableName() string {
-	return "xorm_mysql1"
-}
+func (MySQLModel1) TableName() string { _ = "STUB: not implemented"; return "" }
 
 type MySQLModel2 struct {
 	Id uint64 `json:"-" xorm:"pk autoincr"`
@@ -90,9 +84,7 @@ type MySQLModel2 struct {
 	DeletedAt *carbon.DateTime `xorm:"deleted deleted_at" json:"-"`
 }
 
-func (MySQLModel2) TableName() string {
-	return "xorm_mysql2"
-}
+func (MySQLModel2) TableName() string { _ = "STUB: not implemented"; return "" }
 
 type PgSQLModel1 struct {
 	Id uint64 `json:"-" xorm:"pk autoincr"`
@@ -122,9 +114,7 @@ type PgSQLModel1 struct {
 	DeletedAt carbon.DateTime `xorm:"deleted deleted_at" json:"-"`
 }
 
-func (PgSQLModel1) TableName() string {
-	return "xorm_pgsql1"
-}
+func (PgSQLModel1) TableName() string { _ = "STUB: not implemented"; return "" }
 
 type PgSQLModel2 struct {
 	Id uint64 `json:"-" xorm:"pk autoincr"`
@@ -154,9 +144,7 @@ type PgSQLModel2 struct {
 	DeletedAt *carbon.DateTime `xorm:"deleted deleted_at" json:"-"`
 }
 
-func (PgSQLModel2) TableName() string {
-	return "xorm_pgsql2"
-}
+func (PgSQLModel2) TableName() string { _ = "STUB: not implemented"; return "" }
 
 type SQLiteModel1 struct {
 	Id uint64 `json:"-" xorm:"pk autoincr"`
@@ -179,9 +167,7 @@ type SQLiteModel1 struct {
 	DeletedAt carbon.DateTime `xorm:"deleted deleted_at" json:"-"`
 }
 
-func (SQLiteModel1) TableName() string {
-	return "xorm_sqlite1"
-}
+func (SQLiteModel1) TableName() string { _ = "STUB: not implemented"; return "" }
 
 type SQLiteModel2 struct {
 	Id uint64 `json:"-" xorm:"pk autoincr"`
@@ -204,6 +190,4 @@ type SQLiteModel2 struct {
 	DeletedAt *carbon.DateTime `xorm:"deleted deleted_at" json:"-"`
 }
 
-func (SQLiteModel2) TableName() string {
-	return "xorm_sqlite2"
-}
+func (SQLiteModel2) TableName() string { _ = "STUB: not implemented"; return "" }

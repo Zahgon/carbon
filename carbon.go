@@ -30,48 +30,12 @@ type Carbon struct {
 }
 
 // NewCarbon returns a new Carbon instance.
-func NewCarbon(stdTime ...StdTime) *Carbon {
-	c := new(Carbon)
-	c.lang = NewLanguage().SetLocale(DefaultLocale)
-	c.weekStartsAt = DefaultWeekStartsAt
-	c.weekendDays = DefaultWeekendDays
-	c.currentLayout = DefaultLayout
-	if len(stdTime) > 0 {
-		c.time = stdTime[0]
-		c.loc = c.time.Location()
-		return c
-	}
-	c.loc, c.Error = parseTimezone(DefaultTimezone)
-	return c
-}
+func NewCarbon(stdTime ...StdTime) *Carbon { _ = "STUB: not implemented"; return nil }
 
 // Copy returns a copy of the Carbon instance.
-func (c *Carbon) Copy() *Carbon {
-	if c.IsNil() {
-		return nil
-	}
+func (c *Carbon) Copy() *Carbon { _ = "STUB: not implemented"; return nil }
 
-	// Create a deep copy of weekendDays slice to avoid shared reference
-	weekendDays := make([]Weekday, len(c.weekendDays))
-	copy(weekendDays, c.weekendDays)
-
-	return &Carbon{
-		time:          c.time,
-		weekStartsAt:  c.weekStartsAt,
-		weekendDays:   weekendDays,
-		loc:           c.loc,
-		lang:          c.lang,
-		currentLayout: c.currentLayout,
-		isEmpty:       c.isEmpty,
-		Error:         c.Error,
-	}
-}
+// Create a deep copy of weekendDays slice to avoid shared reference
 
 // Sleep sleeps for the specified duration like time.Sleep.
-func Sleep(d time.Duration) {
-	if IsTestNow() && d > 0 {
-		frozenNow.testNow = frozenNow.testNow.AddDuration(d.String())
-		return
-	}
-	time.Sleep(d)
-}
+func Sleep(d time.Duration) { _ = "STUB: not implemented"; return }
